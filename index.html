@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>MINYAM CAFFE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        nav {
+            background: #4b3832;
+            height: 80px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label.logo {
+            color: #fff;
+            font-size: 30px;
+            line-height: 80px;
+            padding: 0 100px;
+            font-weight: bold;
+        }
+        nav ul {
+            float: right;
+            margin-right: 20px;
+        }
+        nav ul li {
+            display: inline-block;
+            line-height: 80px;
+            margin: 0 5px;
+        }
+        nav ul li a {
+            color: #fff;
+            font-size: 17px;
+            padding: 7px 13px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+        a.active, a:hover {
+            background: #d9b99b;
+            transition: .5s;
+        }
+        .checkbtn {
+            font-size: 30px;
+            color: white;
+            float: right;
+            line-height: 80px;
+            margin-right: 40px;
+            cursor: pointer;
+            display: none;
+        }
+        #check {
+            display: none;
+        }
+        @media (max-width: 952px) {
+            label.logo {
+                font-size: 30px;
+                padding-left: 50px;
+            }
+            nav ul li a {
+                font-size: 16px;
+            }
+        }
+        @media (max-width: 858px) {
+            .checkbtn {
+                display: block;
+            }
+            ul {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #2c3e50;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+            }
+            nav ul li {
+                display: block;
+                margin: 50px 0;
+                line-height: 30px;
+            }
+            nav ul li a {
+                font-size: 20px;
+            }
+            a:hover, a.active {
+                background: none;
+                color: #d9b99b;
+            }
+            #check:checked ~ ul {
+                left: 0;
+            }
+        }
+        .btn-inti {
+            background-color: #8c564b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .btn-inti:hover {
+            background-color: #4b3832;
+        }
+        .jumbotron {
+            background-image: url("images/UC8A1834.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            position: relative;
+            text-align: center;
+        }
+        .jumbotron::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            top: 0;
+            left: 0;
+        }
+        .jumbotron .contain {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .jumbotron .contain h1 {
+            font-size: 4em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        .jumbotron .contain h1 span {
+            color: #d9b99b;
+        }
+        .jumbotron .contain p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        .jumbotron .contain .btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #8c564b;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease;
+        }
+        .jumbotron .contain .btn:hover {
+            background-color: #4b3832;
+        }
+        /* Menu Section */
+        .menu-section {
+            padding: 50px 0;
+            background: #f7f7f7;
+            text-align: center;
+        }
+        .menu-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .menu-section p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            color: #666;
+        }
+        .menu-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .menu-item {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            width: 300px; /* Ensures uniform width */
+            transition: transform 0.3s;
+        }
+        .menu-item:hover {
+            transform: scale(1.05);
+        }
+        .menu-item img {
+            width: 100%;
+            height: 200px; /* Ensures uniform height */
+            object-fit: cover;
+        }
+        .menu-item h3 {
+            font-size: 1.8em;
+            margin: 15px 0 10px;
+            color: #333;
+        }
+        .menu-item p {
+            font-size: 1em;
+            margin: 10px;
+            color: #666;
+        }
+        .menu-item .price {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #0082e6;
+            font-weight: bold;
+        }
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        footer h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        footer p {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        footer .socials a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        footer .socials a:hover {
+            color: #0082e6;
+        }
+        .team-section {
+            padding: 50px 0;
+            background: #f7f7f7;
+            text-align: center;
+        }
+        .team-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .team-section p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            color: #666;
+        }
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .team-member {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+        .team-member:hover {
+            transform: scale(1.05);
+        }
+        .team-member img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .team-member h3 {
+            font-size: 1.5em;
+            margin: 15px 0 10px;
+            color: #333;
+        }
+        .team-member p {
+            font-size: 1em;
+            margin: 10px;
+            color: #666;
+        }
+/* Portfolio Section */
+.portfolio-section {
+    padding: 50px 0;
+    background: #fff;
+    text-align: center;
+}
+.portfolio-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+.portfolio-section p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #666;
+}
+.portfolio-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.portfolio-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s;
+}
+.portfolio-item:hover {
+    transform: scale(1.05);
+}
+.portfolio-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.portfolio-item h3 {
+    font-size: 1.5em;
+    margin: 15px 0 10px;
+    color: #333;
+}
+.portfolio-item p {
+    font-size: 1em;
+    margin: 10px;
+    color: #666;
+}
+
+
+    </style>
+  </head>
+  <body>
+
+    <!-- Menu Section -->
+    <div class="header-bg">
+    <div class="pt-5">
+        <div class="container pt-5" id="about">
+          <div class="row pt-5 position-relative">
+            <div class="position-absolute" style="top:166px; left:15px;"> <a href="">
+              <div class="kk shadow-sm"> <i class="lni lni-instagram-original"></i> </div>
+              </a> <a href="">
+              <div class="kk shadow-sm"> <i class="lni lni-linkedin"></i> </div>
+              </a> <a href="">
+              <div class="kk shadow-sm"> <i class="lni lni-dribbble"></i> </div>
+              </a> <a href="">
+              <div class="kk shadow-sm"> <i class="lni lni-github"></i> </div>
+              </a> </div>
+            <div class="position-absolute" style="top:366px; right:15px;">
+              <div class="text-uppercase small font-weight-bold text-white lni-rotate-90"> Scroll Down &nbsp; <i class="lni lni-mouse lni-rotate-90"></i> </div>
+            </div>
+            <div class="col-lg-6 col-12 mx-auto text-center text-white">\
+                <h3></h3>
+              <h1 class="font-weight-bold">Mike Deven Muid</h1>
+              <h3 class="font-weight-bold">I'am Fullstack Web Development</h3>
+              <p class="lead mb-5">Designer & Maker with curiosity and passion for simplicity, My Phone 082191414302 You Call me.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5 col-12 mx-auto text-center"> <img src="WhatsApp_Image_2023-01-19_at_02.05.39-removebg-preview.png" class="img-fluid"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-light pt-5" id="skillset">
+      <div class="container pb-5">
+        <div class="row py-5">
+          <div class="col-12 text-center">
+            <h2 class="h1 font-weight-bold mb-5">Skillset <span class="text-primary hh">.</span></h2>
+          </div>
+          <div class="col-lg-4 col-12">
+            <div class="tt shadow-sm"> <i class="lni lni-code"></i> </div>
+            <div class="p-5 shadow-sm border-radius-new bg-white">
+              <h4 class="font-weight-bold mb-3">Web Development</h4>
+              <p class="m-0">Selamat datang di profil saya! Saya adalah seorang Full Stack Web Developer dengan pengalaman dalam mengembangkan aplikasi web yang responsif dan fungsional. Dengan pemahaman mendalam tentang teknologi front-end dan back-end, saya memiliki kemampuan untuk merancang, membangun, dan memelihara aplikasi web dari awal hingga akhir. </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-12">
+            <div class="tt shadow-sm"> <i class="lni lni-select"></i> </div>
+            <div class="p-5 shadow-sm border-radius-new bg-white">
+              <h4 class="font-weight-bold mb-3"> Designer</h4>
+              <p class="m-0">Selamat datang di profil saya! Saya adalah seorang desainer grafis yang berpengalaman, dengan keahlian khusus dalam menciptakan karya visual yang menarik dan komunikatif menggunakan Adobe Photoshop dan alat desain lainnya. Dengan latar belakang yang kuat dalam seni visual, saya memiliki kemampuan untuk mengubah konsep dan ide menjadi desain yang memukau, baik untuk keperluan pemasaran, branding, maupun media sosial. </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-12">
+            <div class="tt shadow-sm"> <i class="lni lni-video"></i> </div>
+            <div class="p-5 shadow-sm border-radius-new bg-white">
+              <h4 class="font-weight-bold mb-3">Video Editing</h4>
+              <p class="m-0">Selamat datang di profil saya! Saya adalah seorang editor video yang berpengalaman, dengan hasrat untuk mengubah rekaman mentah menjadi karya visual yang menarik dan bercerita. Dengan keterampilan dalam berbagai perangkat lunak editing seperti Adobe Premiere Pro DLL!, saya memiliki kemampuan untuk menciptakan video yang tidak hanya estetis, tetapi juga mampu menyampaikan pesan yang kuat. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- Footer Section -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script> 
+    <script src="js/script.js"></script> 
+    </body>
+    </html>
+  
